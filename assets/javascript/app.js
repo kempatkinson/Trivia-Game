@@ -4,7 +4,7 @@ var pairs = [
         answers: [
             {
                 answer: 1,
-                status: true,
+                status: false,
             },
             {
                 answer: 2,
@@ -16,7 +16,7 @@ var pairs = [
             },
             {
                 answer: 4,
-                status: false,
+                status: true,
             },
         ],
         displayed: false
@@ -42,18 +42,38 @@ var pairs = [
             },
         ],
         displayed: false
-    }
+    },
+    {
+    question: "1 + 2 =",
+        answers: [
+            {
+                answer: 1,
+                status: false,
+            },
+            {
+                answer: 2,
+                status: false,
+            },
+            {
+                answer: 3,
+                status: true,
+            },
+            {
+                answer: 4,
+                status: false,
+            },
+        ],
+        displayed: false
+    },
 
 ]
 
 $(document).ready(function () {
     $("#quiz").hide();
     $("#score").hide();
-
-    
 })
 
-$(document).on("click", "#startbutton", function() {
+$(document).on("click", "#startbutton", function () {
 
     $("#start").hide();
     $("#quiz").show();
@@ -64,27 +84,71 @@ $(document).on("click", "#startbutton", function() {
     pairs[0].displayed = true;
 })
 
+var correctcount = 0;
+var wrongcount = 0;
 
 
+// function check() {
+//     for (var i = 0; i < pairs.length; i++) {
+//         if (pairs[i].displayed == true) {
+//             for (j = 0; j < pairs[i - 1].answers.length; j++) {
+//                 if (this.id == ("option-" + (j))) {
+//                     console.log(this)
 
+//                 }
 
-$(document).on("click", ".answer", function() {
-    $("#question").empty();
-    $("#answers").empty();
-    $("#quiz").show();
-    $("#question").append(pairs[1].question);
-    for (var j = 0; j < pairs[1].answers.length; j++) {
-        $("#answers").append("<a class= 'btn btn-primary answer' id='option-" + j + "'>" + pairs[1].answers[j].answer + "</a> <br>");
-    }
-    pairs[1].displayed = true;
-})
-// for ( var i = 0; i < pairs.length ; i++) {
-//     if (pairs[i].displayed = false) {
-//         $("#question").append(pairs[i].question);
-//         for (var j = 0; j < pairs[i].answers.length; j++) {
-//             $("#answers").append("<a class= 'btn btn-primary' id='option-" + j + "'>" + pairs[i].answers[j].answer + "</a> <br>");
-//         }
-//         pairs[i].displayed = true;
-//     }   
-    
+//             }
+//         } else if (i == (pairs.length - 1)) {
+//             console.log(this)
+// //         }
+
+// //     }
 // }
+
+
+$(document).on("click", ".answer", function () {
+
+
+    for (var i = 0; i < pairs.length; i++) {
+        if (pairs[i].displayed == true) {
+            // log if answer is corect
+            for (j = 0; j < pairs[i].answers.length; j++) {
+                if (this.id == ("option-" + (j))) {
+                    if (pairs[i].answers[j].status == true) {
+                        correctcount++;
+                        console.log("Correct:" + correctcount);
+
+                    } else if (pairs[i].answers[j].status == false) {
+                        wrongcount++;
+                        console.log("Wrong:" + wrongcount);
+                    }
+                }
+            }
+            pairs[i].displayed = false;
+            //set new question
+            $("#question").empty();
+            $("#answers").empty();
+               
+            // if there is a valid question in front of current index
+            if ((i + 1) < pairs.length) {
+                $("#question").append(pairs[i + 1].question);
+                for (var j = 0; j < pairs[i + 1].answers.length; j++) {
+                    $("#answers").append("<a class= 'btn btn-primary answer' id='option-" + j + "'>" + pairs[i + 1].answers[j].answer + "</a> <br>");
+                }
+                pairs[i + 1].displayed = true;
+                break;
+            
+            } else {
+                $("#quiz").hide();
+                $("#score").show();
+                $("#correct").text(correctcount)
+                $("#false").text(wrongcount)
+            }
+        }
+
+    }
+
+
+
+})
+
