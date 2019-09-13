@@ -6,27 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href ="assets/css/style.css">
-    <link rel="text/javascript" href ="assets/javascript/app.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
     <title>Trivia</title>
 </head>
 
 <body>
-    <jumbotron id=screen> 
-        <h1> WOop WOop </h1>
-        <div id=quiz>
-            <div id= question>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <div class="jumbotron" id=screen>
+        
+        <h1 id=header> Woop Woop </h1>
+        
 
+        <div id="start">
+
+            <button type="button" class="btn btn-primary" id="startbutton"> Start </button>
+
+        </div>
+
+        <div id="quiz">
+
+            <div id="question"> This is where the question goes
             </div>
+            <br>
 
-            <div id= answers>
-                
+            <div id="answers">
+                    <div class="btn-group-vertical">
+
+                            <a class="btn btn-primary" id="option1"> <span> Option 1 </span ></a>
+                            <br>
+                            <a class="btn btn-primary" id="option2"> <span> Option 2 </span> </a>
+                            <br>
+                            <a class="btn btn-primary" id="option3"> <span> Option 3 </span> </a>
+                            <br>
+                            <a class="btn btn-primary" id="option4"> <span> Option 3 </span> </a>
+                            <br>
+                 
+                        </div>
             </div>
 
         </div>
-        
-    </jumbotron>
+
+        <div id="final score">
+
+        </div>
+
+    </div>
+    
 </body>
 
 </html>
